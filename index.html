@@ -3,45 +3,52 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>🧠 Server Guide · Minimal</title>
+    <title>🧠 Server Guide · Youth Dancers</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <style>
+        /* ── base variables (overridden by JS) ── */
+        :root {
+            --bg-deep: #0a0816;
+            --bg-card: #14101f;
+            --border-glow: #2a2040;
+            --neon-1: #00f3ff;
+            --neon-2: #ff2a7a;
+            --neon-3: #ffd700;
+            --neon-4: #b44dff;
+            --text-light: #f0eaff;
+            --text-muted: #9488b0;
+            --shadow-glow: rgba(0, 243, 255, 0.15);
+            --gradient-start: #00f3ff;
+            --gradient-mid: #ff2a7a;
+            --gradient-end: #ffd700;
+            --card-hover: rgba(0, 243, 255, 0.08);
+            --stat-bg: rgba(20, 16, 31, 0.6);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        :root {
-            --bg: #0a0816;
-            --card: #14101f;
-            --border: #2a2040;
-            --neon1: #00f3ff;
-            --neon2: #ff2a7a;
-            --neon3: #ffd700;
-            --text: #f0eaff;
-            --muted: #9488b0;
-            --shadow: rgba(0, 243, 255, 0.12);
-        }
-
         body {
-            background: var(--bg);
+            background: var(--bg-deep);
             font-family: 'Inter', sans-serif;
-            color: var(--text);
+            color: var(--text-light);
             min-height: 100vh;
-            padding: 1.5rem 1rem;
-            background-image: radial-gradient(circle at 10% 20%, var(--card) 0%, var(--bg) 80%);
+            padding: 2rem 1.5rem;
+            background-image: radial-gradient(circle at 10% 20%, var(--bg-card) 0%, var(--bg-deep) 80%);
             display: flex;
             flex-direction: column;
             align-items: center;
-            transition: background 0.6s ease;
+            transition: background 0.8s ease;
         }
 
         .container {
-            max-width: 900px;
+            max-width: 1300px;
             width: 100%;
         }
 
@@ -51,494 +58,648 @@
             flex-wrap: wrap;
             align-items: center;
             justify-content: space-between;
-            padding: 0.8rem 0;
-            border-bottom: 1px solid var(--border);
+            padding: 1.5rem 0;
+            border-bottom: 2px solid var(--border-glow);
             margin-bottom: 1.5rem;
-            gap: 0.5rem;
-            transition: border-color 0.6s ease;
+            gap: 1rem;
+            transition: border-color 0.8s ease;
         }
 
         .header-left {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
         .header-left .icon {
-            font-size: 2rem;
-            background: rgba(0, 243, 255, 0.06);
-            padding: 0.3rem;
+            font-size: 2.5rem;
+            background: rgba(0, 243, 255, 0.08);
+            padding: 0.5rem;
             border-radius: 50%;
-            border: 2px solid var(--neon1);
-            box-shadow: 0 0 20px var(--shadow);
-            transition: all 0.6s ease;
+            border: 2px solid var(--neon-1);
+            box-shadow: 0 0 40px var(--shadow-glow);
+            transition: all 0.8s ease;
         }
 
         .header-left h1 {
             font-family: 'Orbitron', monospace;
-            font-size: clamp(1.4rem, 4vw, 2rem);
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
             font-weight: 900;
-            background: linear-gradient(135deg, var(--neon1), var(--neon2), var(--neon3));
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-mid), var(--gradient-end));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            letter-spacing: 1px;
-            transition: background 0.6s ease;
+            letter-spacing: 2px;
+            transition: background 0.8s ease;
+        }
+
+        .header-left .sub {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            transition: color 0.8s ease;
         }
 
         .header-stats {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.8rem 1.2rem;
-            font-size: 0.75rem;
-            color: var(--muted);
-            background: rgba(20, 16, 31, 0.4);
-            padding: 0.3rem 1rem;
-            border-radius: 40px;
-            border: 1px solid var(--border);
+            gap: 1.5rem;
+            background: var(--stat-bg);
+            padding: 0.8rem 1.8rem;
+            border-radius: 60px;
+            border: 1px solid var(--border-glow);
             backdrop-filter: blur(4px);
-            transition: all 0.6s ease;
+            transition: all 0.8s ease;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            transition: color 0.8s ease;
         }
 
         .stat-item .num {
             font-weight: 700;
-            color: var(--text);
-            font-size: 0.9rem;
-        }
-        .stat-item i {
-            color: var(--neon1);
-            margin-right: 4px;
-            transition: color 0.6s ease;
+            color: var(--text-light);
+            font-size: 1.1rem;
+            transition: color 0.8s ease;
         }
 
-        /* ── banner ── */
+        .stat-item i {
+            color: var(--neon-1);
+            width: 18px;
+            transition: color 0.8s ease;
+        }
+
+        /* ── banner image ── */
         .banner {
-            max-width: 500px;
-            margin: 0 auto 1.5rem;
-            border-radius: 20px;
+            width: 100%;
+            border-radius: 24px;
             overflow: hidden;
-            border: 2px solid var(--border);
-            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.5);
-            transition: border-color 0.6s ease;
-            background: var(--bg);
+            margin-bottom: 2rem;
+            border: 2px solid var(--border-glow);
+            transition: border-color 0.8s ease;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
         }
 
         .banner img {
             width: 100%;
             height: auto;
             display: block;
-            max-height: 60vh;
-            object-fit: contain;
+            max-height: 400px;
+            object-fit: cover;
         }
 
-        /* ── sections ── */
+        /* ── section titles ── */
         .section-title {
             font-family: 'Orbitron', monospace;
-            font-size: 1.1rem;
-            letter-spacing: 1px;
-            margin: 1.8rem 0 0.8rem;
+            font-size: 1.4rem;
+            letter-spacing: 2px;
+            margin: 2.5rem 0 1rem;
             display: flex;
             align-items: center;
-            gap: 8px;
-            color: var(--text);
-            transition: color 0.6s ease;
+            gap: 12px;
+            color: var(--text-light);
+            transition: color 0.8s ease;
         }
+
         .section-title i {
-            color: var(--neon3);
-            transition: color 0.6s ease;
+            color: var(--neon-3);
+            transition: color 0.8s ease;
         }
         .section-title span {
             flex: 1;
-            height: 1px;
-            background: var(--border);
+            height: 2px;
+            background: linear-gradient(to right, var(--border-glow), transparent);
+            transition: background 0.8s ease;
         }
 
-        /* ── role grid (smaller) ── */
+        .section-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.2rem;
+            padding-left: 4px;
+            transition: color 0.8s ease;
+        }
+
+        /* ── role cards ── */
         .role-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-            gap: 0.8rem;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.2rem;
         }
 
         .role-card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 0.8rem 0.6rem;
-            transition: 0.25s ease;
+            background: var(--bg-card);
+            backdrop-filter: blur(4px);
+            border: 1px solid var(--border-glow);
+            border-radius: 16px;
+            padding: 1.2rem 1rem;
+            transition: all 0.4s ease;
+            cursor: default;
             position: relative;
             overflow: hidden;
         }
 
         .role-card:hover {
-            transform: translateY(-3px);
-            border-color: var(--neon1);
-            box-shadow: 0 0 20px var(--shadow);
+            transform: translateY(-4px);
+            border-color: var(--neon-1);
+            box-shadow: 0 0 30px var(--shadow-glow);
         }
 
         .role-card .role-top {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            margin-bottom: 0.2rem;
-        }
-        .role-card .role-name {
-            font-weight: 700;
-            font-size: 0.85rem;
-            color: var(--text);
-            letter-spacing: 0.2px;
-            transition: color 0.6s ease;
-        }
-        .role-card .role-emoji {
-            font-size: 1.2rem;
-        }
-        .role-card .role-desc {
-            font-size: 0.7rem;
-            color: var(--muted);
-            line-height: 1.3;
-            transition: color 0.6s ease;
-        }
-        .role-card .role-tag {
-            font-size: 0.55rem;
-            font-weight: 700;
-            background: var(--neon2);
-            color: #fff;
-            padding: 1px 8px;
-            border-radius: 12px;
-            display: inline-block;
-            margin-top: 0.3rem;
-            transition: background 0.6s ease;
-        }
-        .role-card .badge-level {
-            position: absolute;
-            top: 4px;
-            right: 4px;
-            font-size: 0.5rem;
-            background: rgba(0, 243, 255, 0.1);
-            color: var(--neon1);
-            padding: 1px 6px;
-            border-radius: 10px;
-            border: 1px solid rgba(0, 243, 255, 0.15);
-            transition: all 0.6s ease;
+            justify-content: space-between;
+            margin-bottom: 0.4rem;
         }
 
-        /* ── promo (compact) ── */
+        .role-card .role-name {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--text-light);
+            letter-spacing: 0.3px;
+            transition: color 0.8s ease;
+        }
+
+        .role-card .role-emoji {
+            font-size: 1.4rem;
+        }
+
+        .role-card .role-desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+            margin-top: 0.2rem;
+            transition: color 0.8s ease;
+        }
+
+        .role-card .role-tag {
+            font-size: 0.6rem;
+            font-weight: 700;
+            background: var(--neon-2);
+            color: #fff;
+            padding: 2px 10px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 0.5rem;
+            letter-spacing: 0.3px;
+            transition: background 0.8s ease;
+        }
+
+        .role-card .badge-level {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            font-size: 0.6rem;
+            background: rgba(0, 243, 255, 0.12);
+            color: var(--neon-1);
+            padding: 2px 8px;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            transition: all 0.8s ease;
+        }
+
+        /* ── promo box ── */
         .promo-box {
-            background: var(--card);
-            border: 1px solid var(--neon3);
-            border-radius: 18px;
-            padding: 1rem 1.2rem;
-            margin: 1rem 0;
-            transition: all 0.6s ease;
+            background: linear-gradient(145deg, var(--bg-card), var(--bg-deep));
+            border: 2px solid var(--neon-3);
+            border-radius: 24px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 0 60px rgba(255, 215, 0, 0.04);
+            transition: all 0.8s ease;
         }
 
         .promo-box:hover {
-            border-color: var(--neon1);
-            box-shadow: 0 0 30px var(--shadow);
+            border-color: var(--neon-1);
+            box-shadow: 0 0 80px var(--shadow-glow);
         }
 
         .promo-box .promo-header {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 12px;
+            margin-bottom: 1rem;
             font-family: 'Orbitron', monospace;
-            font-size: 1rem;
-            color: var(--neon3);
-            transition: color 0.6s ease;
+            font-size: 1.2rem;
+            color: var(--neon-3);
+            transition: color 0.8s ease;
         }
+
         .promo-box .promo-header i {
-            font-size: 1.4rem;
+            font-size: 1.8rem;
         }
+
         .promo-box .promo-body {
-            color: var(--muted);
-            font-size: 0.85rem;
-            line-height: 1.6;
-            transition: color 0.6s ease;
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-size: 0.95rem;
+            transition: color 0.8s ease;
         }
+
         .promo-box .promo-body strong {
-            color: var(--text);
+            color: var(--text-light);
+            transition: color 0.8s ease;
         }
+
+        .promo-box .promo-body .highlight {
+            color: var(--neon-1);
+            transition: color 0.8s ease;
+        }
+
         .promo-box .promo-body .stats-line {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem 1rem;
-            background: rgba(0, 0, 0, 0.25);
-            padding: 0.4rem 0.8rem;
-            border-radius: 12px;
-            margin: 0.4rem 0;
-            border: 1px solid var(--border);
-            font-size: 0.75rem;
-        }
-        .promo-box .promo-body .stats-line .num {
-            color: var(--neon3);
-            font-weight: 700;
-        }
-        .promo-box .promo-link {
-            display: inline-block;
-            margin-top: 0.6rem;
-            background: var(--neon1);
-            color: var(--bg);
-            font-weight: 700;
-            padding: 0.3rem 1.2rem;
-            border-radius: 30px;
-            text-decoration: none;
-            font-size: 0.8rem;
-            transition: 0.3s;
-        }
-        .promo-box .promo-link:hover {
-            background: var(--neon3);
-            transform: scale(1.02);
+            gap: 1.2rem 2rem;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 0.8rem 1.2rem;
+            border-radius: 16px;
+            margin: 0.8rem 0;
+            border: 1px solid var(--border-glow);
+            transition: border-color 0.8s ease;
         }
 
-        /* ── messages (tiny cloud) ── */
+        .promo-box .promo-body .stats-line span {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            transition: color 0.8s ease;
+        }
+
+        .promo-box .promo-body .stats-line .num {
+            color: var(--neon-3);
+            font-weight: 700;
+            transition: color 0.8s ease;
+        }
+
+        .promo-box .promo-link {
+            display: inline-block;
+            margin-top: 1rem;
+            background: var(--neon-1);
+            color: var(--bg-deep);
+            font-weight: 700;
+            padding: 0.5rem 1.5rem;
+            border-radius: 40px;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            border: none;
+            font-size: 0.9rem;
+        }
+
+        .promo-box .promo-link:hover {
+            background: var(--neon-3);
+            transform: scale(1.03);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+        }
+
+        /* ── message cloud ── */
         .msg-cloud {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 0.4rem 0.8rem;
-            padding: 0.6rem 0.8rem;
-            background: rgba(20, 16, 31, 0.15);
-            border-radius: 40px;
-            border: 1px dashed var(--border);
-            min-height: 40px;
-            margin: 0.5rem 0 1rem;
-            transition: all 0.6s ease;
+            gap: 0.8rem 1.2rem;
+            padding: 1.2rem 1.5rem;
+            background: rgba(20, 16, 31, 0.2);
+            border-radius: 60px;
+            border: 1px dashed var(--border-glow);
+            min-height: 70px;
+            margin: 0.5rem 0 1.5rem;
+            transition: all 0.8s ease;
         }
 
         .msg-tag {
-            background: var(--card);
-            border: 1px solid var(--border);
-            padding: 0.15rem 0.8rem;
-            border-radius: 30px;
-            font-size: 0.75rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-glow);
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
             font-weight: 500;
-            color: var(--text);
-            transition: 0.2s;
+            color: var(--text-light);
+            transition: all 0.4s ease;
+            cursor: default;
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 6px;
             animation: float 6s ease-in-out infinite alternate;
         }
+
         .msg-tag:nth-child(odd) {
             animation-delay: 0.5s;
+            border-color: rgba(255, 42, 122, 0.25);
         }
         .msg-tag:nth-child(3n) {
             animation-delay: 1.2s;
+            border-color: rgba(0, 243, 255, 0.25);
         }
         .msg-tag:nth-child(5n+2) {
             animation-delay: 2s;
+            border-color: rgba(255, 215, 0, 0.25);
         }
+
         .msg-tag:hover {
-            transform: scale(1.1);
-            border-color: var(--neon1);
-            box-shadow: 0 0 15px var(--shadow);
+            transform: scale(1.12) rotate(-2deg);
+            border-color: var(--neon-1);
+            background: var(--bg-deep);
+            box-shadow: 0 0 30px var(--shadow-glow);
         }
+
         @keyframes float {
-            0% { transform: translateY(0px); }
-            100% { transform: translateY(-5px); }
+            0% {
+                transform: translateY(0px);
+            }
+            100% {
+                transform: translateY(-8px);
+            }
         }
+
         .msg-tag .emoji {
-            font-size: 1rem;
+            font-size: 1.2rem;
         }
         .msg-tag .time {
-            font-size: 0.5rem;
-            color: var(--muted);
-            margin-left: 2px;
+            font-size: 0.6rem;
+            color: var(--text-muted);
+            margin-left: 4px;
+            transition: color 0.8s ease;
+        }
+
+        .msg-tag .delete {
+            color: var(--neon-2);
+            font-size: 0.6rem;
+            opacity: 0.6;
+            transition: color 0.8s ease;
         }
 
         /* ── footer ── */
         .footer {
             text-align: center;
-            font-size: 0.6rem;
-            color: var(--muted);
-            border-top: 1px solid var(--border);
-            padding-top: 1rem;
-            margin-top: 1.5rem;
-            letter-spacing: 1px;
-            opacity: 0.4;
-            transition: all 0.6s ease;
-        }
-
-        /* ── refresh button (minimal) ── */
-        .refresh-btn {
-            position: fixed;
-            bottom: 16px;
-            right: 16px;
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 40px;
-            padding: 0.3rem 0.8rem;
-            font-size: 0.65rem;
-            color: var(--muted);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            cursor: pointer;
-            backdrop-filter: blur(4px);
-            transition: all 0.4s ease;
-            z-index: 100;
-        }
-        .refresh-btn:hover {
-            border-color: var(--neon1);
-            color: var(--text);
-            box-shadow: 0 0 20px var(--shadow);
-        }
-        .refresh-btn .dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--neon1);
-            transition: background 0.6s ease;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-glow);
+            padding-top: 2rem;
+            margin-top: 2rem;
+            letter-spacing: 2px;
+            opacity: 0.5;
+            transition: all 0.8s ease;
         }
 
         /* ── responsive ── */
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
             .header {
                 flex-direction: column;
-                align-items: stretch;
-                gap: 0.5rem;
+                align-items: flex-start;
+                gap: 1rem;
             }
             .header-stats {
-                justify-content: space-between;
-                padding: 0.2rem 0.8rem;
-                font-size: 0.65rem;
+                width: 100%;
+                justify-content: space-around;
+                padding: 0.6rem 1rem;
+                border-radius: 30px;
+                flex-wrap: wrap;
+            }
+            .stat-item {
+                font-size: 0.8rem;
             }
             .role-grid {
-                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
             }
-            .banner {
-                max-width: 100%;
+            .promo-box {
+                padding: 1.2rem;
             }
-            .promo-box .promo-body .stats-line {
-                gap: 0.3rem 0.8rem;
-                font-size: 0.65rem;
+            .banner img {
+                max-height: 250px;
             }
         }
 
-        @media (max-width: 420px) {
+        @media (max-width: 480px) {
             .role-grid {
                 grid-template-columns: 1fr 1fr;
             }
-            .msg-tag {
-                font-size: 0.65rem;
-                padding: 0.1rem 0.6rem;
+            .msg-cloud {
+                padding: 0.8rem;
+                gap: 0.5rem;
             }
+            .msg-tag {
+                font-size: 0.75rem;
+                padding: 0.2rem 0.8rem;
+            }
+            .header-left h1 {
+                font-size: 1.6rem;
+            }
+            .banner img {
+                max-height: 180px;
+            }
+        }
+
+        /* ── theme transition overlay ── */
+        .theme-flash {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+            border-radius: 50%;
+            transform: scale(3);
+            background: radial-gradient(circle, var(--neon-1) 0%, transparent 70%);
+        }
+
+        .theme-flash.active {
+            opacity: 0.15;
+            transform: scale(1);
+            border-radius: 0;
+        }
+
+        /* ── color scheme badge ── */
+        .color-scheme-badge {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-glow);
+            border-radius: 40px;
+            padding: 0.4rem 1rem;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            backdrop-filter: blur(8px);
+            z-index: 100;
+            transition: all 0.8s ease;
+            cursor: pointer;
+        }
+
+        .color-scheme-badge .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--neon-1);
+            transition: background 0.8s ease;
+        }
+
+        .color-scheme-badge:hover {
+            border-color: var(--neon-1);
+            box-shadow: 0 0 20px var(--shadow-glow);
         }
     </style>
 </head>
 <body>
+
+    <!-- theme flash overlay -->
+    <div class="theme-flash" id="themeFlash"></div>
 
     <div class="container">
 
         <!-- ═══ HEADER ═══ -->
         <header class="header">
             <div class="header-left">
-                <span class="icon"><i class="fa-regular fa-brain"></i></span>
-                <h1># server-guide</h1>
+                <div class="icon"><i class="fa-regular fa-brain"></i></div>
+                <div>
+                    <h1># 🧠 server-guide</h1>
+                    <div class="sub">✦ the roadmap to the universe</div>
+                </div>
             </div>
             <div class="header-stats">
-                <span class="stat-item"><i class="fa-regular fa-users"></i><span class="num">42.6k</span></span>
-                <span class="stat-item"><i class="fa-regular fa-building"></i><span class="num">15.3k</span></span>
-                <span class="stat-item"><i class="fa-regular fa-fire"></i><span class="num">7.6k</span></span>
-                <span class="stat-item"><i class="fa-regular fa-envelope"></i><span class="num">900+</span></span>
-                <span class="stat-item"><i class="fa-regular fa-ban"></i><span class="num">76</span></span>
+                <div class="stat-item"><i class="fa-regular fa-users"></i><span class="num">42.6k</span> members</div>
+                <div class="stat-item"><i class="fa-regular fa-building"></i><span class="num">15.3k</span> in HQ</div>
+                <div class="stat-item"><i class="fa-regular fa-fire"></i><span class="num">7.6k</span> weekly active</div>
+                <div class="stat-item"><i class="fa-regular fa-envelope"></i><span class="num">900+</span> daily requests</div>
+                <div class="stat-item"><i class="fa-regular fa-ban"></i><span class="num">76</span> banned / hr</div>
             </div>
         </header>
 
-        <!-- ═══ BANNER ═══ -->
+        <!-- ═══ BANNER IMAGE ═══ -->
         <div class="banner">
-            <img src="https://media.discordapp.net/attachments/1409565700967891024/1413756059847495711/ChatGPT_Image_Sep_5_2025_06_06_13_PM.png?ex=6a4c8cee&is=6a4b3b6e&hm=97d253fc67ff8fa2fabd8abb0c422562f5c1518329cced605fb632e2c5b7e1e0&=&format=webp&quality=lossless&width=602&height=902" alt="Server Guide" />
+            <img src="https://media.discordapp.net/attachments/1409565700967891024/1413756059847495711/ChatGPT_Image_Sep_5_2025_06_06_13_PM.png?ex=6a4c8cee&is=6a4b3b6e&hm=97d253fc67ff8fa2fabd8abb0c422562f5c1518329cced605fb632e2c5b7e1e0&=&format=webp&quality=lossless&width=602&height=902" alt="Server Guide Banner" />
         </div>
 
-        <!-- ═══ ROLES (compact) ═══ -->
+        <!-- ═══ ROLES ═══ -->
         <div class="section-title">
-            <i class="fa-solid fa-arrow-up-1-9"></i> Ascension
+            <i class="fa-solid fa-arrow-up-1-9"></i> The Ascension Path
             <span></span>
         </div>
-        <div class="role-grid" id="roleGrid"></div>
+        <div class="section-desc">Every role tells a story. Hover to see the journey.</div>
 
-        <!-- ═══ PROMO (condensed) ═══ -->
+        <div class="role-grid" id="roleGrid">
+            <!-- roles injected by JS -->
+        </div>
+
+        <!-- ═══ PROMO / ANNOUNCEMENT ═══ -->
         <div class="section-title">
-            <i class="fa-regular fa-star"></i> Potato Universe
+            <i class="fa-regular fa-star"></i> The Potato Universe
             <span></span>
         </div>
+
         <div class="promo-box">
             <div class="promo-header">
-                <i class="fa-regular fa-message"></i> Unlock NSFW, Groups & Trade Bot
+                <i class="fa-regular fa-message"></i> 📢 Unlock NSFW Access, Potato Chat Groups & Trade Bot Portal
             </div>
             <div class="promo-body">
+                <p><strong>We're not just a server — we're a universe.</strong></p>
                 <div class="stats-line">
-                    <span>👥 <span class="num">42,600+</span> Total</span>
-                    <span>🏢 <span class="num">15,300+</span> HQ</span>
-                    <span>🔥 <span class="num">7,600+</span> Weekly</span>
-                    <span>📩 <span class="num">900+</span> Daily Req</span>
-                    <span>⛔ <span class="num">76+</span> Banned/hr</span>
+                    <span>👥 <span class="num">42,600+</span> Total Members</span>
+                    <span>🏢 <span class="num">15,300+</span> Joined the HQ</span>
+                    <span>🔥 <span class="num">7,600+</span> Active Weekly</span>
+                    <span>📩 <span class="num">900+</span> Daily Requests</span>
+                    <span>⛔ <span class="num">76+</span> Banned Hourly</span>
                     <span>🛡️ <span class="num">12</span> Admins</span>
-                    <span>😎 <span class="num">1</span> Lord</span>
-                    <span>🥔 <span class="num">0</span> Nonsense</span>
+                    <span>😎 <span class="num">1</span> Lord — me</span>
+                    <span>🥔 <span class="num">0</span> Nonsense about my Potato Chat Universe</span>
                 </div>
-                <p style="margin-top:0.3rem;">
-                    Subscribe or Boost, then message me for access.
-                    <a href="https://theworldtrade.gumroad.com/l/mqagg" target="_blank" class="promo-link">🔗 Trade Bot Portal</a>
+                <p style="margin-top: 1rem;">
+                    To access our NSFW server, exclusive Potato Chat groups, or the Trade Bot Portal, you must:<br />
+                    ✅ Subscribe to our Discord or Boost the server<br />
+                    📨 Then message me directly on Potato Chat for access or help
                 </p>
-                <p style="font-size:0.7rem; color:var(--neon3); margin-top:0.2rem;">— Fed 🥔 | Creator of the Potato Universe</p>
+                <a href="https://theworldtrade.gumroad.com/l/mqagg" target="_blank" class="promo-link">
+                    🔗 Trade Bot Portal <i class="fa-regular fa-arrow-up-right-from-square"></i>
+                </a>
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--neon-3);">
+                    We keep it structured, secure, and elite.<br />
+                    — Fed 🥔 | Creator of the Coldest Fries, Dance Planet, and the One True Potato Universe
+                </p>
             </div>
         </div>
 
-        <!-- ═══ ECHOES (tiny) ═══ -->
+        <!-- ═══ RANDOM MESSAGES ═══ -->
         <div class="section-title">
-            <i class="fa-regular fa-comment-dots"></i> Echoes
+            <i class="fa-regular fa-comment-dots"></i> Echoes from the Channel
             <span></span>
         </div>
-        <div class="msg-cloud" id="msgCloud"></div>
+        <div class="section-desc">Random snippets from the chat — click to make them pop.</div>
 
-        <div class="footer">✦ youth dancers · minimalist ✦</div>
+        <div class="msg-cloud" id="msgCloud">
+            <!-- messages injected by JS -->
+        </div>
+
+        <div class="footer">✦ youth dancers · no boring forums · just vibes ✦</div>
+
     </div>
 
-    <!-- refresh button -->
-    <div class="refresh-btn" id="refreshBtn">
+    <!-- color scheme badge -->
+    <div class="color-scheme-badge" id="colorBadge" title="Click to refresh the color scheme">
         <span class="dot"></span>
-        <span id="schemeLabel">#1</span>
-        <i class="fa-regular fa-rotate" style="font-size:0.7rem;"></i>
+        <span id="schemeLabel">scheme #1</span>
+        <i class="fa-regular fa-rotate" style="font-size:0.8rem; opacity:0.6;"></i>
     </div>
 
     <script>
         (function() {
             'use strict';
 
-            // ── DATA ──
+            // ── ROLE DATA ──
             const roles = [
-                { name: '@everyone', emoji: '📢', desc: 'Everyone starts here.', tag: 'Entry' },
+                { name: '@everyone', emoji: '📢', desc: 'Everyone starts here when they join.', tag: 'Entry' },
                 { name: '@Unverified', emoji: '❓', desc: 'New members join as Unverified.', tag: 'Start' },
-                { name: '@Aspiring Dancer', emoji: '🔥', desc: 'Verify in verification channel.', tag: 'Lv1' },
-                { name: '@Pre-Beginner', emoji: '🐣', desc: 'Like the rules to advance.', tag: 'Lv2' },
-                { name: '@New Student', emoji: '📚', desc: 'Begin your learning journey.', tag: 'Lv3' },
-                { name: '@Intermediate', emoji: '🌱', desc: 'Keep engaging to climb!', tag: 'Lv4' },
-                { name: '@Advanced', emoji: '🚀', desc: 'Join all beginner roles.', tag: 'Lv5' },
-                { name: '@Junior League', emoji: '🤝', desc: 'Visit many channels.', tag: 'Lv6' },
-                { name: '@Professional', emoji: '💼', desc: 'Participate in groups.', tag: 'Lv7' },
-                { name: '@Elite Company', emoji: '🏆', desc: 'Ask for advancement.', tag: 'Lv8' },
-                { name: '@Senior Soloists', emoji: '💎', desc: 'Boost or wait for verify.', tag: 'Lv9' },
-                { name: '@Sujet Masters', emoji: '📘', desc: 'Hand-picked by owner.', tag: 'Elite' },
-                { name: '@First Artist', emoji: '🎨', desc: 'Grandfathered early.', tag: 'OG' },
-                { name: '@Principals', emoji: '⭐', desc: 'Very early members.', tag: 'OG' },
+                { name: '@Aspiring Dancer', emoji: '🔥', desc: 'Verify yourself by going to the verification channel and clicking “Verify.”',
+                    tag: 'Level 1' },
+                { name: '@Pre-Beginner', emoji: '🐣', desc: 'After verifying, like the rules to advance to Pre-Beginner.',
+                    tag: 'Level 2' },
+                { name: '@New Student', emoji: '📚', desc: 'Student role – begin your learning journey.', tag: 'Level 3' },
+                { name: '@Intermediate', emoji: '🌱', desc: 'Keep engaging in the community to climb up!', tag: 'Level 4' },
+                { name: '@Advanced', emoji: '🚀', desc: 'Be a member of all beginner roles and participate in potato chat.',
+                    tag: 'Level 5' },
+                { name: '@Junior League', emoji: '🤝', desc: 'Visit as many channels that are available to you.',
+                    tag: 'Level 6' },
+                { name: '@Professional', emoji: '💼', desc: 'Participate in multiple channels and off‑platform groups.',
+                    tag: 'Level 7' },
+                { name: '@Elite Company', emoji: '🏆', desc: 'Ask any member above you for a role advancement request.',
+                    tag: 'Level 8' },
+                { name: '@Senior Soloists', emoji: '💎', desc: 'Boost the chat or wait for manual verification.',
+                    tag: 'Level 9' },
+                { name: '@Sujet Masters', emoji: '📘', desc: 'Hand‑picked by the server owner, limited by design.',
+                    tag: 'Elite' },
+                { name: '@First Artist', emoji: '🎨', desc: 'Grandfathered in for being early Discord members.',
+                    tag: 'OG' },
+                { name: '@Principals', emoji: '⭐', desc: 'Very early Discord members.', tag: 'OG' },
                 { name: '@Ballerina', emoji: '🦢', desc: 'Server Owner: @MonkeyD', tag: 'Owner' },
-                { name: '@Server Investor +', emoji: '💜', desc: 'Boosters only.', tag: 'Booster' },
-                { name: '@unknown-role', emoji: '🕺', desc: 'Paid members only.', tag: 'Paid' },
-                { name: '@De La Font ✨', emoji: '✨', desc: 'Human moderator.', tag: 'Mod' },
+                { name: '@Server Investor +', emoji: '💜', desc: 'SERVER BOOSTERS ONLY', tag: 'Booster' },
+                { name: '@unknown-role', emoji: '🕺', desc: 'PAID MEMBERS ONLY – you must become a member.',
+                tag: 'Paid' },
+                { name: '@De La Font ✨', emoji: '✨', desc: 'The only human Discord moderator.', tag: 'Mod' },
                 { name: '@The Coldest Fans', emoji: '🩰', desc: '🧊🥶', tag: 'Fan' },
-                { name: '@Trade Bot 2', emoji: '👑', desc: 'BOT', tag: 'Bot' },
-                { name: '@Trade Bot 3', emoji: '🎩', desc: 'BOT', tag: 'Bot' },
+                { name: '@Trade Bot 2', emoji: '👑', desc: 'BOT Role', tag: 'Bot' },
+                { name: '@Trade Bot 3', emoji: '🎩', desc: 'BOT Role', tag: 'Bot' },
             ];
 
+            // ── MESSAGES DATA ──
             const msgs = [
                 { text: 'Katherine: Idk how this works', emoji: '🤷' },
-                { text: 'Monkey D: 📢 Unlock NSFW...', emoji: '📢' },
+                { text: 'Monkey D [H!]: 📢 Unlock NSFW Access...', emoji: '📢' },
                 { text: 'gabito: Hi', emoji: '👋' },
                 { text: 'suehtam0096: hi', emoji: '👋' },
                 { text: 'Avjt [bann]: hi', emoji: '👋' },
                 { text: 'Litstink: Y Hi', emoji: '👋' },
                 { text: 'Asdf: Not sure how this works', emoji: '🤔' },
+                { text: 'Katherine: Idk how this works', emoji: '🤷' },
+                { text: 'Monkey D [H!]: 📢 Unlock NSFW Access...', emoji: '📢' },
             ];
 
             // ── inject roles ──
@@ -553,7 +714,7 @@
                 <span class="role-emoji">${r.emoji}</span>
               </div>
               <div class="role-desc">${r.desc}</div>
-              <span class="role-tag">${r.tag || 'role'}</span>
+              <span class="role-tag">${r.tag ? r.tag : 'role'}</span>
             `;
                 grid.appendChild(card);
             });
@@ -567,18 +728,19 @@
                 tag.innerHTML = `
               <span class="emoji">${m.emoji}</span>
               ${m.text}
-              <span class="time">· ${hours}h</span>
+              <span class="time">· ${hours}h ago</span>
             `;
-                tag.addEventListener('click', function() {
+                tag.addEventListener('click', function(e) {
+                    e.stopPropagation();
                     this.style.transition = '0.1s';
-                    this.style.transform = 'scale(1.4)';
-                    this.style.borderColor = 'var(--neon3)';
+                    this.style.transform = 'scale(1.6) rotate(0deg)';
+                    this.style.borderColor = 'var(--neon-3)';
                     this.style.background = 'rgba(255,215,0,0.15)';
                     setTimeout(() => {
                         this.style.transform = '';
                         this.style.borderColor = '';
                         this.style.background = '';
-                    }, 250);
+                    }, 300);
                 });
                 cloud.appendChild(tag);
             });
@@ -586,7 +748,13 @@
             // ── COLOR SCHEME GENERATOR ──
             let schemeCount = 0;
 
-            function randomHue() { return Math.floor(Math.random() * 360); }
+            function randomHue() {
+                return Math.floor(Math.random() * 360);
+            }
+
+            function hsl(h, s, l) {
+                return `hsl(${h}, ${s}%, ${l}%)`;
+            }
 
             function generateScheme() {
                 const h = randomHue();
@@ -598,30 +766,40 @@
                 const sat = 70 + Math.floor(Math.random() * 25);
                 const light = 55 + Math.floor(Math.random() * 30);
 
-                const bg = `hsl(${h}, ${20 + Math.floor(Math.random() * 20)}%, ${6 + Math.floor(Math.random() * 8)}%)`;
-                const card = `hsl(${h}, ${20 + Math.floor(Math.random() * 20)}%, ${12 + Math.floor(Math.random() * 8)}%)`;
-                const border = `hsl(${h}, ${30 + Math.floor(Math.random() * 20)}%, ${20 + Math.floor(Math.random() * 10)}%)`;
+                const bgDeep = `hsl(${h}, ${20 + Math.floor(Math.random() * 20)}%, ${6 + Math.floor(Math.random() * 8)}%)`;
+                const bgCard =
+                    `hsl(${h}, ${20 + Math.floor(Math.random() * 20)}%, ${12 + Math.floor(Math.random() * 8)}%)`;
+                const borderGlow =
+                    `hsl(${h}, ${30 + Math.floor(Math.random() * 20)}%, ${20 + Math.floor(Math.random() * 10)}%)`;
 
                 const neon1 = `hsl(${c1}, ${sat}%, ${light}%)`;
                 const neon2 = `hsl(${c2}, ${sat}%, ${light}%)`;
                 const neon3 = `hsl(${c3}, ${sat}%, ${light}%)`;
                 const neon4 = `hsl(${c4}, ${sat}%, ${light}%)`;
 
-                const text = `hsl(${h}, 10%, 94%)`;
-                const muted = `hsl(${h}, 10%, 60%)`;
-                const shadow = `hsla(${c1}, ${sat}%, ${light}%, 0.12)`;
+                const textLight = `hsl(${h}, 10%, 94%)`;
+                const textMuted = `hsl(${h}, 10%, 60%)`;
+
+                const shadowGlow = `hsla(${c1}, ${sat}%, ${light}%, 0.15)`;
+                const cardHover = `hsla(${c1}, ${sat}%, ${light}%, 0.08)`;
+                const statBg = `hsla(${h}, 20%, 12%, 0.6)`;
 
                 return {
-                    '--bg': bg,
-                    '--card': card,
-                    '--border': border,
-                    '--neon1': neon1,
-                    '--neon2': neon2,
-                    '--neon3': neon3,
-                    '--neon4': neon4,
-                    '--text': text,
-                    '--muted': muted,
-                    '--shadow': shadow,
+                    '--bg-deep': bgDeep,
+                    '--bg-card': bgCard,
+                    '--border-glow': borderGlow,
+                    '--neon-1': neon1,
+                    '--neon-2': neon2,
+                    '--neon-3': neon3,
+                    '--neon-4': neon4,
+                    '--text-light': textLight,
+                    '--text-muted': textMuted,
+                    '--shadow-glow': shadowGlow,
+                    '--gradient-start': neon1,
+                    '--gradient-mid': neon2,
+                    '--gradient-end': neon3,
+                    '--card-hover': cardHover,
+                    '--stat-bg': statBg,
                 };
             }
 
@@ -630,11 +808,24 @@
                 for (const [key, value] of Object.entries(scheme)) {
                     root.style.setProperty(key, value);
                 }
-                const dot = document.querySelector('.refresh-btn .dot');
+
+                const dot = document.querySelector('.color-scheme-badge .dot');
                 const label = document.getElementById('schemeLabel');
-                if (dot) dot.style.background = scheme['--neon1'];
+                if (dot) {
+                    dot.style.background = scheme['--neon-1'];
+                }
                 schemeCount++;
-                if (label) label.textContent = `#${schemeCount}`;
+                if (label) {
+                    label.textContent = `scheme #${schemeCount}`;
+                }
+
+                const flash = document.getElementById('themeFlash');
+                flash.classList.remove('active');
+                void flash.offsetWidth;
+                flash.classList.add('active');
+                setTimeout(() => {
+                    flash.classList.remove('active');
+                }, 700);
             }
 
             function randomizeTheme() {
@@ -642,10 +833,16 @@
                 applyScheme(scheme);
             }
 
-            // ── click refresh ──
-            document.getElementById('refreshBtn').addEventListener('click', randomizeTheme);
+            // ── click badge to refresh ──
+            document.getElementById('colorBadge').addEventListener('click', function(e) {
+                e.stopPropagation();
+                randomizeTheme();
+            });
 
-            // ── keyboard 'r' ──
+            // ── initial random theme ──
+            randomizeTheme();
+
+            // ── keyboard shortcut: press 'r' for new scheme ──
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'r' && !e.ctrlKey && !e.metaKey && !e.altKey) {
                     if (document.activeElement && document.activeElement.tagName !== 'INPUT' &&
@@ -655,8 +852,7 @@
                 }
             });
 
-            // initial theme
-            randomizeTheme();
+            console.log('🧠 Server Guide loaded. Press "r" or click the badge for a new color scheme!');
         })();
     </script>
 
