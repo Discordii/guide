@@ -134,23 +134,26 @@
             transition: color 0.8s ease;
         }
 
-        /* ── banner image ── */
+        /* ── banner image – FIXED: portrait friendly ── */
         .banner {
             width: 100%;
+            max-width: 600px;          /* optional – limits width for readability */
+            margin: 0 auto 2rem auto;
             border-radius: 24px;
             overflow: hidden;
-            margin-bottom: 2rem;
             border: 2px solid var(--border-glow);
             transition: border-color 0.8s ease;
             box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+            background: var(--bg-deep);
         }
 
         .banner img {
             width: 100%;
             height: auto;
             display: block;
-            max-height: 400px;
-            object-fit: cover;
+            max-height: 70vh;          /* never crops – scales down if too tall */
+            object-fit: contain;
+            margin: 0 auto;
         }
 
         /* ── section titles ── */
@@ -468,8 +471,8 @@
             .promo-box {
                 padding: 1.2rem;
             }
-            .banner img {
-                max-height: 250px;
+            .banner {
+                max-width: 100%;
             }
         }
 
@@ -487,9 +490,6 @@
             }
             .header-left h1 {
                 font-size: 1.6rem;
-            }
-            .banner img {
-                max-height: 180px;
             }
         }
 
@@ -575,7 +575,7 @@
             </div>
         </header>
 
-        <!-- ═══ BANNER IMAGE ═══ -->
+        <!-- ═══ BANNER IMAGE – now portrait‑friendly ═══ -->
         <div class="banner">
             <img src="https://media.discordapp.net/attachments/1409565700967891024/1413756059847495711/ChatGPT_Image_Sep_5_2025_06_06_13_PM.png?ex=6a4c8cee&is=6a4b3b6e&hm=97d253fc67ff8fa2fabd8abb0c422562f5c1518329cced605fb632e2c5b7e1e0&=&format=webp&quality=lossless&width=602&height=902" alt="Server Guide Banner" />
         </div>
